@@ -1,3 +1,3 @@
 import modulos.campus as campus
 
-campus.menu()
+campus.menu() 

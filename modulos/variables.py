@@ -4,23 +4,21 @@ camper = list()
 trainers = list()
 #Guarda los campers
 def save():
-    inf = {
+    inf = { 
         "Id" : int(input("Ingrese el id del camper: ")),
         "Nombre": input("Ingrese el nombre del camper: "),
         "Apellido" : input("Ingrese el apellido del camper: "),
         "Direccion" : input("Ingrese la direccion del camper: "),
         "Acudiente" : input("Ingrese el nombre del acudiente del camper: "),
-        "Telefonos" : {
-            "Telefono fijo" : int(input("Ingrese el telefono fijo: ")),
-            "Telefono movil" : int(input("Ingrese el telefono movil: "))  
-        },
+        "Telefono" : [
+            {
+                f"{'Fijo' if(int(input('1. Fijo 0. Celular: '))) else 'Celular'}":
+                input(f'Numero de contacto{x+1}: ')
+            }
+            for x in range((int(input("¿Cuantos numeros de contacto tiene?: "))))
+        ],
         "Estado" : "",
         "Ruta" : "",
-        "Pruebas" : {
-            "Nota teorica" : "",
-            "Nota practica" : "",
-            "EstAprobado" : ""
-        },
         "Area" : "",
     }
     camper.append(inf)
