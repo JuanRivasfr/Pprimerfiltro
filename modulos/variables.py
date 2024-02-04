@@ -2,6 +2,11 @@ import os
 rutas = list()
 camper = list()
 trainer = list()
+
+#--------------------------------------------------------------------------------------------------------------------------------
+
+#CAMPERS
+
 #Guarda los campers
 def savecampers():
     inf = { 
@@ -105,6 +110,8 @@ def ucampers(id):
 
 #--------------------------------------------------------------------------------------------------------------------------------
 
+#TRAINERS
+
 def savetrainers():
     inft = { 
         "Id" : int(input("Ingrese el id del trainer: ")),
@@ -120,7 +127,7 @@ def savetrainers():
             }
             for x in range((int(input("¿Cuantos numeros de contacto tiene?: "))))
         ],
-        "Rutas" : "",
+        "Rutas" : [],
     }
     
     while (True):
@@ -144,6 +151,48 @@ def savetrainers():
     trainer.append(inft)
     print(trainer)
     os.system('pause')
+    
+def btrainers():
+    for i,value in enumerate(trainer):
+        print(f'Id: {value.get("Id")} \nNombre: {value.get("Nombre")} \nApellido: {value.get("Apellido")} \nEdad: {value.get("Edad")}')
+        for i1, val in value.items():
+            if i1 == "HorariosD":
+                print("Horarios:")
+                for i2 in (val):
+                    print(i2)
+        print('\n')
+    os.system('pause')
+
+def bidtrainers(id):
+    for i, value in enumerate(trainer):
+        if value["Id"] == id:
+            print(f'Id: {value.get("Id")} \nNombre: {value.get("Nombre")} \nApellido: {value.get("Apellido")} \nEdad: {value.get("Edad")}')
+            for i1, val in value.items():
+                if i1 == "HorariosD":
+                    print("Horarios:")
+                    for i2 in (val):
+                        print(i2)
+    os.system('pause')
+
+def etrainers(id):
+    for i, value in enumerate(trainer):
+        if value["Id"] == id:
+            print(f'Id: {value.get("Id")} \nNombre: {value.get("Nombre")} \nApellido: {value.get("Apellido")} \nEdad: {value.get("Edad")}')
+            for i1, val in value.items():
+                if i1 == "HorariosD":
+                    print("Horarios:")
+                    for i2 in (val):
+                        print(i2)
+            auxe = input("¿Esta seguro que desea eliminar el trainer?(Si/No): ")
+            if auxe == "Si":
+                trainer.pop(i)
+                print(trainer)
+    os.system('pause')
+    
+
+
+#--------------------------------------------------------------------------------------------------------------------------------
+
                         
 def aprob(id):
     for i,value in enumerate(camper):

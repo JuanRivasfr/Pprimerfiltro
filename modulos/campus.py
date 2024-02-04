@@ -1,5 +1,5 @@
 import os
-from .variables import savecampers,aprob,crutas,ctrainer,bcampers,camper,bidcampers, ecampers, ucampers
+from .variables import savecampers,aprob,crutas,ctrainer,bcampers,camper,bidcampers, ecampers, ucampers, savetrainers, savetrainers, savetrainers,btrainers, bidtrainers, etrainers
 
 menuu = ("""
 +++++++++++++++++++++++++++++++
@@ -55,7 +55,30 @@ def createtrainer():
 +++++++++++++++++++
 """)
     #Se llama al metodo encargado de guardar los campers
-    savecampers()
+    savetrainers()
+
+def buscartrainer(codigo=None):
+    print("""
+++++++++++++++
++  Trainer/s  +
+++++++++++++++
+""")
+    if(codigo==None):
+        btrainers()
+    else :
+        bidtrainers(codigo)
+
+def eliminarTrainer(id):
+    os.system('cls')
+    print("""
+++++++++++++++++++++++
++  Eliminar Trainer  +
+++++++++++++++++++++++
+""")
+    etrainers(id)
+
+#---------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 def updpruebas():
     #Impresion Menu
@@ -174,30 +197,30 @@ def menu():
                                     match(opc):
                                         #Accede a crear trainers y llama el metodo
                                         case 1:
-                                             createcamper()
+                                             createtrainer()
                                         #Accede a buscar campers y muestra el menu
                                         case 2:
-                                            menubuscarcamper = ["Listar todos los campers", "Listar por id", "Salir"]
+                                            menubuscartrainer = ["Listar todos los trainers", "Listar por id", "Salir"]
                                             while(True):
                                                 os.system('cls')
                                                 print("""
 +++++++++++++++++++
-+  Buscar Camper  +
++  Buscar Trainer  +
 +++++++++++++++++++
 """)
-                                                for i, value in enumerate(menubuscarcamper):
+                                                for i, value in enumerate(menubuscartrainer):
                                                     print(f"{i+1}. {value}")
                                                 try:
                                                     opc=int(input(":"))
-                                                    if(opc<=len(menubuscarcamper) and opc>0):
+                                                    if(opc<=len(menubuscartrainer) and opc>0):
                                                         match(opc):
                                                             #Accede a listar todos los campers
                                                             case 1:
-                                                                buscarcamper()
+                                                                buscartrainer()
                                                             #Accede a buscar camper por id
                                                             case 2:
-                                                                idc = int(input("Ingrese el id del camper a buscar: "))
-                                                                buscarcamper(idc)
+                                                                idt = int(input("Ingrese el id del trainer a buscar: "))
+                                                                buscartrainer(idt)
                                                             case 3:
                                                                 break
                                                 except ValueError:
@@ -205,8 +228,8 @@ def menu():
                                                     os.system('pause')
                                         #Accede a eliminar campers
                                         case 3:
-                                            idc = int(input("Ingrese el id del camper a eliminar: "))
-                                            eliminarCamper(idc)
+                                            idc = int(input("Ingrese el id del trainer a eliminar: "))
+                                            eliminarTrainer(idc)
                                         case 4:
                                             idc = int(input("Ingrese el id del camper a editar: "))
                                             actualizarCamper(idc)
