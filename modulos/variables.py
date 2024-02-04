@@ -190,9 +190,59 @@ def etrainers(id):
     os.system('pause')
     
 
+def atrainers(id):
+    for i, value in enumerate(trainer):
+        if value["Id"] == id:
+            print(f'Id: {value.get("Id")} \nNombre: {value.get("Nombre")} \nApellido: {value.get("Apellido")} \nEdad: {value.get("Edad")}')
+            for i1, val in value.items():
+                if i1 == "HorariosD":
+                    print("Horarios:")
+                    for i2 in (val):
+                        print(i2)
+            auxe = input("¿Esta seguro que desea editar el trainer?(Si/No): ")
+            if auxe == "Si":
+                inft = { 
+                "Id" : int(input("Ingrese el id del trainer: ")),
+                "Nombre": input("Ingrese el nombre del trainer: "),
+                "Apellido" : input("Ingrese el apellido del trainer: "),
+                "Edad" : int(input("Ingrese la edad del trainer: ")),
+                "Direccion" : input("Ingrese la direccion del trainer: "),
+                "HorariosD" : [],
+                "Telefono" : [
+                    {
+                        f"{'Fijo' if(int(input('0. Celular 1. Fijo : '))) else 'Celular'}":
+                        int(input(f'Numero de contacto {x+1}: '))
+                    }
+                    for x in range((int(input("¿Cuantos numeros de contacto tiene?: "))))
+                ],
+                "Rutas" : [],
+                }
 
+                while (True):
+                    h = int(input("¿Que horarios tiene disponible el trainer? \n1. 6-9AM \n2. 10-12AM \n3. 2-5PM \n4. 6-10PM \n: "))
+                    if h == 1:
+                        inft["HorariosD"].append("6-9AM")
+                    if h == 2:
+                        inft["HorariosD"].append("10-12AM")
+                    if h == 3:
+                        inft["HorariosD"].append("2-5PM")
+                    if h == 4:
+                        inft["HorariosD"].append("6-10PM")
+                    auxe = input("¿Desea agregar otro horario?(Si/No): ")
+                    if auxe == "No":
+                        break    
+                for i, value in enumerate(trainer):
+                    if value["Id"] == inft["Id"]:
+                        print("Ya hay un registro creado con el mismo ID, por favor intente con otro")
+                        os.system('pause')
+                        return
+                trainer[i] = inft
+    print(trainer)
+    os.system('pause')
+                
 #--------------------------------------------------------------------------------------------------------------------------------
 
+#RUTAS
                         
 def aprob(id):
     for i,value in enumerate(camper):

@@ -1,5 +1,5 @@
 import os
-from .variables import savecampers,aprob,crutas,ctrainer,bcampers,camper,bidcampers, ecampers, ucampers, savetrainers, savetrainers, savetrainers,btrainers, bidtrainers, etrainers
+from .variables import savecampers,aprob,crutas,ctrainer,bcampers,camper,bidcampers, ecampers, ucampers, savetrainers, savetrainers, savetrainers,btrainers, bidtrainers, etrainers, atrainers
 
 menuu = ("""
 +++++++++++++++++++++++++++++++
@@ -77,6 +77,14 @@ def eliminarTrainer(id):
 """)
     etrainers(id)
 
+def actualizarTrainer(id):
+    print("""
++++++++++++++++++++
++  Editar Camper  +
++++++++++++++++++++
+""")
+    atrainers(id)
+
 #---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -106,7 +114,7 @@ def gmatriculas():
 def menu():
 
     #Guarda las opciones del menu en un array
-    menu = ["CRUD Campers", "CRUD trainers", "Crear Rutas", "Crear Trainer", "Gestionar Matriculas", "Salir"]
+    menu = ["CRUD Campers", "CRUD Trainers", "Gestor de matriculas", "Crear Trainer", "Gestionar Matriculas", "Salir"]
     while(True):
         os.system('cls')
         print("""
@@ -198,7 +206,7 @@ def menu():
                                         #Accede a crear trainers y llama el metodo
                                         case 1:
                                              createtrainer()
-                                        #Accede a buscar campers y muestra el menu
+                                        #Accede a buscar trainers y muestra el menu
                                         case 2:
                                             menubuscartrainer = ["Listar todos los trainers", "Listar por id", "Salir"]
                                             while(True):
@@ -226,13 +234,14 @@ def menu():
                                                 except ValueError:
                                                     print("La opcion no esta habilitada")
                                                     os.system('pause')
-                                        #Accede a eliminar campers
+                                        #Accede a eliminar trainers
                                         case 3:
                                             idc = int(input("Ingrese el id del trainer a eliminar: "))
                                             eliminarTrainer(idc)
+                                        #Accede a actualizar campers
                                         case 4:
-                                            idc = int(input("Ingrese el id del camper a editar: "))
-                                            actualizarCamper(idc)
+                                            idc = int(input("Ingrese el id del trainer a editar: "))
+                                            actualizarTrainer(idc)
                                         case 5: 
                                             break
                             except ValueError:
