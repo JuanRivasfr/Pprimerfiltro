@@ -1,5 +1,5 @@
 import os
-from .variables import savecampers,aprob,crutas,ctrainer,bcampers,camper,bidcampers, ecampers, ucampers, savetrainers, savetrainers, savetrainers,btrainers, bidtrainers, etrainers, atrainers, crutas, btrutas,idruta
+from .variables import savecampers,aprob,crutas,ctrainer,bcampers,camper,bidcampers, ecampers, ucampers, savetrainers, savetrainers, savetrainers,btrainers, bidtrainers, etrainers, atrainers, crutas, btrutas,idruta,eruta, uruta
 
 menuu = ("""
 +++++++++++++++++++++++++++++++
@@ -69,7 +69,6 @@ def buscartrainer(codigo=None):
         bidtrainers(codigo)
 #Accede al menu para eliminar trainer
 def eliminarTrainer(id):
-    os.system('cls')
     print("""
 ++++++++++++++++++++++
 +  Eliminar Trainer  +
@@ -109,7 +108,15 @@ def buscarrutas(codigo=None):
         idruta(codigo)
 #Accede al metodo para eliminar rutas
 def eliminarRuta(Nombre):
-    pass
+    eruta(Nombre)
+#Accede al metodo para editar rutas
+def actualizarRuta(nombre):
+    print("""
+++++++++++++++++++
++  Editar Rutas  +
+++++++++++++++++++
+""")
+    uruta(nombre)
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -338,11 +345,11 @@ def menu():
                                                             #Accede a eliminar rutas
                                                             case 3:
                                                                 idc = input("Ingrese el nombre de la ruta a eliminar: ")
-                                                                pass
-                                                            #Accede a actualizar campers
+                                                                eliminarRuta(idc)
+                                                            #Accede a actualizar ruta
                                                             case 4:
-                                                                idc = int(input("Ingrese el id del trainer a editar: "))
-                                                                actualizarTrainer(idc)
+                                                                idc = input("Ingrese el nombre de la ruta a editar: ")
+                                                                actualizarRuta(idc)
                                                             case 5: 
                                                                 break
                                                 except ValueError:

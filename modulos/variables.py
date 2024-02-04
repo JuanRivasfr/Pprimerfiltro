@@ -301,7 +301,7 @@ def btrutas():
         print(f'Base de datos principal: {value["BD"].get("Principal")} \nBase de datos secundario: {value["BD"].get("Secundaria")}\n----------------')
         for header, contenido in value.items():
             if header == "BEND":
-                print("Backend")
+                print("Backend:")
                 for index in contenido:
                     print(index)
         print('\n')
@@ -332,7 +332,7 @@ def idruta(nombre):
             print(f'Base de datos principal: {value["BD"].get("Principal")} \nBase de datos secundario: {value["BD"].get("Secundaria")}\n----------------')
             for header, contenido in value.items():
                 if header == "BEND":
-                    print("Backend")
+                    print("Backend:")
                     for index in contenido:
                         print(index)
             print('\n')
@@ -366,9 +366,82 @@ def eruta(nombre):
                     print("Backend")
                     for index in contenido:
                         print(index)
-            print('\n')
-            
+            opc = input("¿Esta seguro que desea eliminar la ruta?(Si/No)")
+            if opc == "Si":
+                rutas.pop(i)
+                print("Se ha eliminado el registro")
+    print(rutas)
+    os.system('pause')
 
+def uruta(nombre):
+    for i, value in enumerate(rutas):
+        if value["Nombre"] == nombre:
+            print("----------------")
+            print(f'Nombre: {value.get("Nombre")}')
+            print("----------------")
+            for i1, val in value.items():
+                if i1 == "FPOO":
+                    print("Fundamentos de Programacion:")
+                    for i2 in (val):
+                        print(i2)
+                    print("----------------")
+                if i1 == "PWEB":
+                    print("Progamacion web:")
+                    for i2 in (val):
+                        print(i2)
+                    print("----------------")
+                if i1 == "PFORMAL":
+                    print("Progamacion formal:")
+                    for i2 in (val):
+                        print(i2)
+                    print("----------------")
+            print(f'Base de datos principal: {value["BD"].get("Principal")} \nBase de datos secundario: {value["BD"].get("Secundaria")}\n----------------')
+            for header, contenido in value.items():
+                if header == "BEND":
+                    print("Backend:")
+                    for index in contenido:
+                        print(index)
+            opc = input("¿Esta seguro que desea editar la ruta?(Si/No)")
+            if opc == "Si":
+                inf = { 
+                    "Nombre": input("Ingrese el nombre de la ruta: "),
+                    "FPOO" : [],
+                    "PWEB" : [],
+                    "PFORMAL" : [],
+                    "BD" : {
+                        "Principal" : input("Ingrese la Base de Datos Principal: "),
+                        "Secundaria" : input("Ingrese la Base de Datos Secundaria: ")
+                        },
+                    "BEND" : [],
+                }
+                while (True):
+                    aux1 = input("¿Que temas desea agregar en el apartado Fundamentos de Programacion? \n: ")
+                    inf["FPOO"].append(aux1)
+                    auxe = input("¿Desea agregar otro tema?(Si/No): ")
+                    if auxe == "No":
+                        break
+                while (True):    
+                    aux1 = input("¿Que temas desea agregar en el apartado de Programacion Web? \n: ")
+                    inf["PWEB"].append(aux1)
+                    auxe = input("¿Desea agregar otro tema?(Si/No): ")
+                    if auxe == "No":
+                        break
+                while (True):    
+                    aux1 = input("¿Que temas desea agregar en el apartado de Programacion Formal? \n: ")
+                    inf["PFORMAL"].append(aux1)
+                    auxe = input("¿Desea agregar otro tema?(Si/No): ")
+                    if auxe == "No":
+                        break
+                while (True):
+                    aux1 = input("¿Que temas desea agregar en el apartado de Back End \n: ")
+                    inf["BEND"].append(aux1)
+                    auxe = input("¿Desea agregar otro tema?(Si/No): ")
+                    if auxe == "No":
+                        break
+                rutas[i] = inf
+    print(rutas)
+    os.system('pause')
+                
     
 #--------------------------------------------------------------------------------------------------------------------------------
 def aprob(id):
