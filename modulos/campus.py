@@ -1,5 +1,5 @@
 import os
-from .variables import savecampers,aprob,crutas,ctrainer,bcampers,camper,bidcampers, ecampers, ucampers, savetrainers, savetrainers, savetrainers,btrainers, bidtrainers, etrainers, atrainers, crutas, btrutas,idruta,eruta, uruta
+from .variables import savecampers,aprob,crutas,ctrainer,bcampers,camper,bidcampers, ecampers, ucampers, savetrainers, savetrainers, savetrainers,btrainers, bidtrainers, etrainers, atrainers, crutas, btrutas,idruta,eruta, uruta, cgrupos
 
 menuu = ("""
 +++++++++++++++++++++++++++++++
@@ -119,7 +119,17 @@ def actualizarRuta(nombre):
     uruta(nombre)
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------
-
+#Accede al metodo para crear grupos
+def creategrupos():
+    #Impresion Menu
+    print("""
+++++++++++++++++++
++  Crear Grupos  +
+++++++++++++++++++
+""")
+    #Se llama al metodo encargado de guardar los campers
+    cgrupos()
+#---------------------------------------------------------------------------------------------------------------------------------------------------------
 def updpruebas():
     #Impresion Menu
     print(menuu)
@@ -280,7 +290,7 @@ def menu():
                                 print("La opcion no esta habilitada")
                                 os.system('pause')   
                     case 3: 
-                        menugestion = ["CRUD Rutas", "Consultar rutas", "Eliminar ruta", "Editar ruta","Salir"]
+                        menugestion = ["CRUD Rutas", "CRUD Grupos", "Eliminar ruta", "Editar ruta","Salir"]
                         while(True):
                             os.system('cls')
                             print("""
@@ -295,7 +305,6 @@ def menu():
                                 if(opc<=len(menugestion) and opc>0):
                                     match(opc):
                                         #Accede a crear rutas y llama el metodo
-                                        #-----------------------------------------------------------------------------------------
                                         case 1:
                                             menurutas = ["Crear Rutas", "Consultar rutas", "Eliminar ruta", "Editar ruta","Salir"]
                                             while(True):
@@ -355,9 +364,65 @@ def menu():
                                                 except ValueError:
                                                     print("La opcion no esta habilitada")
                                                     os.system('pause')   
-                                                #-------------------------------------------------
                                         case 2:
-                                            pass
+                                            menugrupos = ["Crear Grupos", "Consultar Grupos", "Eliminar Grupo", "Editar Grupo","Salir"]
+                                            while(True):
+                                                os.system('cls')
+                                                print("""
+++++++++++++++++
++  Menu Rutas  +
+++++++++++++++++
+                                                    """)
+                                                for i,value in enumerate(menugrupos):
+                                                    print(f"{i+1}. {value}")
+                                                try: 
+                                                    opc= int(input(":"))
+                                                    if(opc<=len(menugrupos) and opc>0):
+                                                        match(opc):
+                                                            #Accede a crear grupos y llama el metodo
+                                                            case 1:
+                                                                creategrupos()
+                                                            #Accede a buscar rutas
+                                                            case 2:
+                                                                menubuscarrutas = ["Listar todas las rutas", "Listar por nombre", "Salir"]
+                                                                while(True):
+                                                                    os.system('cls')
+                                                                    print("""
++++++++++++++++++++
++  Buscar Rutas  +
++++++++++++++++++++
+""")
+                                                                    for i, value in enumerate(menubuscarrutas):
+                                                                        print(f"{i+1}. {value}")
+                                                                    try:
+                                                                        opc=int(input(":"))
+                                                                        if(opc<=len(menubuscarrutas) and opc>0):
+                                                                            match(opc):
+                                                                                #Accede a listar todas las rutas
+                                                                                case 1:
+                                                                                    buscarrutas()
+                                                                                #Accede a buscar camper por id
+                                                                                case 2:
+                                                                                    idt = input("Ingrese el nombre de la ruta a buscar: ")
+                                                                                    buscarrutas(idt)
+                                                                                case 3:
+                                                                                    break
+                                                                    except ValueError:
+                                                                        print("La opcion no esta habilitada")
+                                                                        os.system('pause')
+                                                            #Accede a eliminar rutas
+                                                            case 3:
+                                                                idc = input("Ingrese el nombre de la ruta a eliminar: ")
+                                                                eliminarRuta(idc)
+                                                            #Accede a actualizar ruta
+                                                            case 4:
+                                                                idc = input("Ingrese el nombre de la ruta a editar: ")
+                                                                actualizarRuta(idc)
+                                                            case 5: 
+                                                                break
+                                                except ValueError:
+                                                    print("La opcion no esta habilitada")
+                                                    os.system('pause')   
                                         case 5: break
                             except ValueError:
                                 print("La opcion no esta habilitada")

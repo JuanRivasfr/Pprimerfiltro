@@ -2,6 +2,7 @@ import os
 rutas = list()
 camper = list()
 trainer = list()
+grupo = list()
 
 #--------------------------------------------------------------------------------------------------------------------------------
 
@@ -133,22 +134,25 @@ def savetrainers():
     
     while (True):
         h = int(input("¿Que horarios tiene disponible el trainer? \n1. 6-9AM \n2. 10-12AM \n3. 2-5PM \n4. 6-10PM \n: "))
+        aux1 = ""
         if h == 1:
-            inft["HorariosD"].append("6-9AM")
+            aux1 = "6-9AM"
         if h == 2:
-            inft["HorariosD"].append("10-12AM")
+            aux1 = "10-12AM"
         if h == 3:
-            inft["HorariosD"].append("2-5PM")
+            aux1 = "2-5PM"
         if h == 4:
-            inft["HorariosD"].append("6-10PM")
+            aux1 = "6-10PM"
+        aux = {"Horario": aux1, "Disponible": "Si"}
+        inft["HorariosD"].append(aux)
         auxe = input("¿Desea agregar otro horario?(Si/No): ")
         if auxe == "No":
-            break    
+            break  
     for i, value in enumerate(trainer):
         if value["Id"] == inft["Id"]:
             print("Ya hay un registro creado con el mismo ID, por favor intente con otro")
             os.system('pause')
-            return
+            return  
     trainer.append(inft)
     print(trainer)
     os.system('pause')
@@ -443,7 +447,90 @@ def uruta(nombre):
     os.system('pause')
                 
     
-#--------------------------------------------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------------------------------------------
+
+#GRUPOS
+
+#Creacion de grupos
+def cgrupos():
+
+    def salonn():
+        salon = ""
+        auxsalon = input(
+            "Que salon desea agregar? \n1. Artemis \n2. Apolo \n3. Sputnik \n:")
+        if auxsalon == "1":
+            salon = "Artemis"
+        if auxsalon == "2":
+            salon = "Apolo"
+        if auxsalon == "3":
+            salon = "Sputnik"
+        for i, value in enumerate(grupo):
+            if value["Salon"] == salon and value["Horario"] == hor:
+                print("El salon esta ocupado en ese horario")
+                salonn()
+        return salon
+
+    f = 1
+    nom = ""
+    hor = ""
+    iden=""
+
+    #Trainer a agregar
+    print("Que trainer desde agregar a la ruta?")
+    for i, value in enumerate(trainer):
+        print(f'{i+1}. {value["Nombre"]}')
+    auxx = int(input(":"))
+    for i, value in enumerate(trainer):
+        if (i + 1) == auxx:
+            nom = value["Nombre"]
+            print("Horarios")
+            for i1, val in enumerate(value["HorariosD"]):
+                if val["Disponible"] == "Si":
+                    print(f'{i1+1}. {val["Horario"]}')
+                else:
+                    print("El trainer no tiene horarios disponibles")
+                    return
+    opc = int(input("¿Que horario desea agregar?\n:"))
+    for i, value in enumerate(trainer):
+        if (i + 1) == auxx:
+            for i1, val in enumerate(value["HorariosD"]):
+                if (i1 + 1) == opc:
+                    hor = val["Horario"]
+                    val["Disponible"] = "No"
+    #Sacar el identificador
+    if not grupo:
+        for i, value in enumerate(grupo):
+            if value["Nombre"] == nom:
+                f = value["Identificador"][1]
+                f += 1
+            f = str(f)
+            iden = str(nom[0]) + (f).upper()
+    else: 
+        iden = str(nom[0]) + ("1").upper()
+
+
+    #Fecha de inicio
+    finicio = input("Ingrese la fecha de inicio de la ruta: ")
+    #Fecha de finalizacion
+    ffinal = input("Ingrese la fecha de finalizacion de la ruta: ")
+    #Prints
+
+    inf1 = {
+        "Identificador": iden,
+        "Salon": salonn(),
+        "Trainer": nom,
+        "Horario": hor,
+        "Inicio": finicio,
+        "Finalizacion": ffinal
+    }
+    grupo.append(inf1)
+    print(grupo)
+    os.system('pause')
+
+   
+
+#-----------------------------------------------------------------------------------------------------------------------------------
+
 def aprob(id):
     for i,value in enumerate(camper):
         if value["Id"] == id:  
