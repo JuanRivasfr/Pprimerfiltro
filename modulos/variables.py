@@ -122,7 +122,20 @@ def savetrainers():
         ],
         "Rutas" : "",
     }
-     h = input("¿Que horarios tiene disponible el trainer? \n1.6-9AM \n2.10-12AM \n3.2-5PM \n4.6-10PM \n: ")
+    
+    while (True):
+        h = int(input("¿Que horarios tiene disponible el trainer? \n1. 6-9AM \n2. 10-12AM \n3. 2-5PM \n4. 6-10PM \n: "))
+        if h == 1:
+            inft["HorariosD"].append("6-9AM")
+        if h == 2:
+            inft["HorariosD"].append("10-12AM")
+        if h == 3:
+            inft["HorariosD"].append("2-5PM")
+        if h == 4:
+            inft["HorariosD"].append("6-10PM")
+        auxe = input("¿Desea agregar otro horario?(Si/No): ")
+        if auxe == "No":
+            break    
     for i, value in enumerate(trainer):
         if value["Id"] == inft["Id"]:
             print("Ya hay un registro creado con el mismo ID, por favor intente con otro")
