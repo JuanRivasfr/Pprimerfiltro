@@ -356,6 +356,8 @@ def menu():
                                                     print("La opcion no esta habilitada")
                                                     os.system('pause')   
                                                 #-------------------------------------------------
+                                        case 2:
+                                            pass
                                         case 5: break
                             except ValueError:
                                 print("La opcion no esta habilitada")
