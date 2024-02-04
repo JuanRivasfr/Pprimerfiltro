@@ -1,4 +1,5 @@
 import os
+from .faux import rutag
 rutas = list()
 camper = list()
 trainer = list()
@@ -454,26 +455,10 @@ def uruta(nombre):
 #Creacion de grupos
 def cgrupos():
 
-    def salonn():
-        salon = ""
-        auxsalon = input(
-            "Que salon desea agregar? \n1. Artemis \n2. Apolo \n3. Sputnik \n:")
-        if auxsalon == "1":
-            salon = "Artemis"
-        if auxsalon == "2":
-            salon = "Apolo"
-        if auxsalon == "3":
-            salon = "Sputnik"
-        for i, value in enumerate(grupo):
-            if value["Salon"] == salon and value["Horario"] == hor:
-                print("El salon esta ocupado en ese horario")
-                salonn()
-        return salon
-
+    salon = ""
     f = 1
     nom = ""
     hor = ""
-    iden=""
 
     #Trainer a agregar
     print("Que trainer desde agregar a la ruta?")
@@ -488,8 +473,7 @@ def cgrupos():
                 if val["Disponible"] == "Si":
                     print(f'{i1+1}. {val["Horario"]}')
                 else:
-                    print("El trainer no tiene horarios disponibles")
-                    return
+                    print(f'{i1+1}. {val["Horario"]}(OCUPADO)')
     opc = int(input("¿Que horario desea agregar?\n:"))
     for i, value in enumerate(trainer):
         if (i + 1) == auxx:
@@ -498,30 +482,32 @@ def cgrupos():
                     hor = val["Horario"]
                     val["Disponible"] = "No"
     #Sacar el identificador
-    if not grupo:
-        for i, value in enumerate(grupo):
-            if value["Nombre"] == nom:
-                f = value["Identificador"][1]
-                f += 1
-            f = str(f)
-            iden = str(nom[0]) + (f).upper()
-    else: 
-        iden = str(nom[0]) + ("1").upper()
-
-
+    iden = input("Ingrese el identificador del grupo: ")
     #Fecha de inicio
     finicio = input("Ingrese la fecha de inicio de la ruta: ")
     #Fecha de finalizacion
     ffinal = input("Ingrese la fecha de finalizacion de la ruta: ")
+    #Salon
+    auxsalon = input("Que salon desea agregar? \n1. Artemis \n2. Apolo \n3. Sputnik \n:")
+    if auxsalon == "1":
+        salon = "Artemis"
+    if auxsalon == "2":
+        salon = "Apolo"
+    if auxsalon == "3":
+        salon = "Sputnik"
+    for i, value in enumerate(grupo):
+        if value["Salon"] == salon and value["Horario"] == hor:
+            print("El salon esta ocupado en ese horario")
+            return
     #Prints
-
     inf1 = {
         "Identificador": iden,
-        "Salon": salonn(),
+        "Salon": salon,
         "Trainer": nom,
         "Horario": hor,
         "Inicio": finicio,
-        "Finalizacion": ffinal
+        "Finalizacion": ffinal,
+        "Ruta" : ""
     }
     grupo.append(inf1)
     print(grupo)
