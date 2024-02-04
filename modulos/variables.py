@@ -112,6 +112,7 @@ def ucampers(id):
 
 #TRAINERS
 
+#Guarda los trainers
 def savetrainers():
     inft = { 
         "Id" : int(input("Ingrese el id del trainer: ")),
@@ -151,7 +152,7 @@ def savetrainers():
     trainer.append(inft)
     print(trainer)
     os.system('pause')
-    
+#Busca todos los trainers    
 def btrainers():
     for i,value in enumerate(trainer):
         print(f'Id: {value.get("Id")} \nNombre: {value.get("Nombre")} \nApellido: {value.get("Apellido")} \nEdad: {value.get("Edad")}')
@@ -162,7 +163,7 @@ def btrainers():
                     print(i2)
         print('\n')
     os.system('pause')
-
+#Busca trainer por id
 def bidtrainers(id):
     for i, value in enumerate(trainer):
         if value["Id"] == id:
@@ -173,7 +174,7 @@ def bidtrainers(id):
                     for i2 in (val):
                         print(i2)
     os.system('pause')
-
+#Eliminar trainers
 def etrainers(id):
     for i, value in enumerate(trainer):
         if value["Id"] == id:
@@ -188,8 +189,7 @@ def etrainers(id):
                 trainer.pop(i)
                 print(trainer)
     os.system('pause')
-    
-
+#Actualizar trainers
 def atrainers(id):
     for i, value in enumerate(trainer):
         if value["Id"] == id:
@@ -243,7 +243,61 @@ def atrainers(id):
 #--------------------------------------------------------------------------------------------------------------------------------
 
 #RUTAS
-                        
+
+#Creacion de rutas
+def crutas():
+    inf = { 
+        "Nombre": input("Ingrese el nombre de la ruta: "),
+        "FPOO" : ["Introduccion a la algoritmia", "PSeInt", "Python"],
+        "PWEB" : ["HTML", "CSS", "Bootstrap"],
+        "PFORMAL" : ["Java", "JavaScript", "C#"],
+        "BD" : {
+            "Principal" : input("Ingrese la Base de Datos Principal: "),
+            "Secundaria" : input("Ingrese la base de datos secundaria: ")
+            },
+        "BEND" : [],
+    }
+    while (True):
+        aux1 = int(input("¿Que temas desea agregar en el apartado BackEnd?: \n1.NetCore \n2.Spring Boot \n3.NodeJS \n4.Express \n5.Otro \n: "))
+        if aux1 == 1:
+            inf["BEND"].append("NetCore")
+        if aux1 == 2:
+            inf["BEND"].append("Spring Boot")
+        if aux1 == 3:
+            inf["BEND"].append("NodeJS")
+        if aux1 == 4:
+            inf["BEND"].append("Express")
+        if aux1 == 5:
+            otro = input("Ingrese el tema a ver: ")
+            inf["BEND"].append(otro)
+        auxe = input("¿Desea agregar otro tema?(Si/No): ")
+        if auxe == "No":
+            break
+    rutas.append(inf)
+    print(rutas)
+    os.system('pause')
+
+#Mostrar todas las rutas
+def btrutas():
+    for i,value in enumerate(trainer):
+        print(f'Nombre: {value.get("Nombre")}')
+        for i1, val in value.items():
+            if i1 == "FPOO":
+                print("Fundamentos de Programacion:")
+                for i2 in (val):
+                    print(i2)
+            if i1 == "PWEB":
+                print("Progamacion web:")
+                for i2 in (val):
+                    print(i2)
+            if i1 == "PWEB":
+                print("Progamacion web:")
+                for i2 in (val):
+                    print(i2)
+        print('\n')
+    os.system('pause')
+
+#--------------------------------------------------------------------------------------------------------------------------------
 def aprob(id):
     for i,value in enumerate(camper):
         if value["Id"] == id:  
@@ -261,19 +315,6 @@ def aprob(id):
              }
             camper[i]["Pruebas"] = inf
             print(camper) 
-    os.system('pause')
-    
-def crutas():
-    inf = {
-        "Nombre ruta" : input("Ingrese el nombre de la ruta: "),
-        "Fundamentos de programacion" : input("Ingrese los fundamentos de programacion a ver(Introducción a la algoritmia, PSeInt y Python): "), 
-        "Programación Web" : input("Ingrese los temas de programacion a ver(HTML, CSS y Bootstrap): "), 
-        "Programación formal" : input("Ingrese los temas a ver en programacion formal(Java, JavaScript, C#): "), 
-        "Bases de datos" : input("Ingrese las bases de datos a ver(Mysql, MongoDb y Postgresql) \nCada ruta tiene un SGDB principal y un alternativo: "),
-        "Backend" : input("Ingrese los temas a ver en Backend(NetCore, Spring Boot, NodeJS y Express): ")
-    }
-    rutas.append(inf)
-    print(rutas)
     os.system('pause')
     
 def ctrainer():

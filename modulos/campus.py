@@ -1,5 +1,5 @@
 import os
-from .variables import savecampers,aprob,crutas,ctrainer,bcampers,camper,bidcampers, ecampers, ucampers, savetrainers, savetrainers, savetrainers,btrainers, bidtrainers, etrainers, atrainers
+from .variables import savecampers,aprob,crutas,ctrainer,bcampers,camper,bidcampers, ecampers, ucampers, savetrainers, savetrainers, savetrainers,btrainers, bidtrainers, etrainers, atrainers, crutas
 
 menuu = ("""
 +++++++++++++++++++++++++++++++
@@ -56,7 +56,7 @@ def createtrainer():
 """)
     #Se llama al metodo encargado de guardar los campers
     savetrainers()
-
+#Accede al menu para leer todos los campers
 def buscartrainer(codigo=None):
     print("""
 ++++++++++++++
@@ -67,7 +67,7 @@ def buscartrainer(codigo=None):
         btrainers()
     else :
         bidtrainers(codigo)
-
+#Accede al menu para eliminar trainer
 def eliminarTrainer(id):
     os.system('cls')
     print("""
@@ -76,7 +76,7 @@ def eliminarTrainer(id):
 ++++++++++++++++++++++
 """)
     etrainers(id)
-
+#Accede al menu para actualizar trainer
 def actualizarTrainer(id):
     print("""
 +++++++++++++++++++
@@ -86,7 +86,29 @@ def actualizarTrainer(id):
     atrainers(id)
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------
+#Accede al metodo para crear rutas
+def createrutas():
+    #Impresion Menu
+    print("""
++++++++++++++++++++
++  Crear Rutas  +
++++++++++++++++++++
+""")
+    #Se llama al metodo encargado de guardar los campers
+    crutas()
+#Accede al menu para leer las rutas
+def buscarrutas(codigo=None):
+    print("""
+++++++++++++
++  Ruta/s  +
+++++++++++++
+""")
+    if(codigo==None):
+        pass
+    else :
+        bidtrainers(codigo)
 
+#---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def updpruebas():
     #Impresion Menu
@@ -247,7 +269,87 @@ def menu():
                             except ValueError:
                                 print("La opcion no esta habilitada")
                                 os.system('pause')   
-                    case 3: rutas()
+                    case 3: 
+                        menugestion = ["CRUD Rutas", "Consultar rutas", "Eliminar ruta", "Editar ruta","Salir"]
+                        while(True):
+                            os.system('cls')
+                            print("""
+++++++++++++++++++
++  Menu Gestion  +
++++++++++++++++++
+                                """)
+                            for i,value in enumerate(menugestion):
+                                print(f"{i+1}. {value}")
+                            try: 
+                                opc= int(input(":"))
+                                if(opc<=len(menugestion) and opc>0):
+                                    match(opc):
+                                        #Accede a crear rutas y llama el metodo
+                                        #-----------------------------------------------------------------------------------------
+                                        case 1:
+                                            menurutas = ["Crear Rutas", "Consultar rutas", "Eliminar ruta", "Editar ruta","Salir"]
+                                            while(True):
+                                                os.system('cls')
+                                                print("""
+++++++++++++++++
++  Menu Rutas  +
+++++++++++++++++
+                                                    """)
+                                                for i,value in enumerate(menurutas):
+                                                    print(f"{i+1}. {value}")
+                                                try: 
+                                                    opc= int(input(":"))
+                                                    if(opc<=len(menurutas) and opc>0):
+                                                        match(opc):
+                                                            #Accede a crear rutas y llama el metodo
+                                                            case 1:
+                                                                createrutas()
+                                                            #Accede a buscar rutas
+                                                            case 2:
+                                                                menubuscarrutas = ["Listar todas las rutas", "Listar por nombre", "Salir"]
+                                                                while(True):
+                                                                    os.system('cls')
+                                                                    print("""
++++++++++++++++++++
++  Buscar Rutas  +
++++++++++++++++++++
+""")
+                                                                    for i, value in enumerate(menubuscarrutas):
+                                                                        print(f"{i+1}. {value}")
+                                                                    try:
+                                                                        opc=int(input(":"))
+                                                                        if(opc<=len(menubuscarrutas) and opc>0):
+                                                                            match(opc):
+                                                                                #Accede a listar todas las rutas
+                                                                                case 1:
+                                                                                    pass
+                                                                                #Accede a buscar camper por id
+                                                                                case 2:
+                                                                                    idt = int(input("Ingrese el id del trainer a buscar: "))
+                                                                                    buscartrainer(idt)
+                                                                                case 3:
+                                                                                    break
+                                                                    except ValueError:
+                                                                        print("La opcion no esta habilitada")
+                                                                        os.system('pause')
+                                                            #Accede a eliminar trainers
+                                                            case 3:
+                                                                idc = int(input("Ingrese el id del trainer a eliminar: "))
+                                                                eliminarTrainer(idc)
+                                                            #Accede a actualizar campers
+                                                            case 4:
+                                                                idc = int(input("Ingrese el id del trainer a editar: "))
+                                                                actualizarTrainer(idc)
+                                                            case 5: 
+                                                                break
+                                                except ValueError:
+                                                    print("La opcion no esta habilitada")
+                                                    os.system('pause')   
+                                                #-------------------------------------------------
+                                        case 5: break
+                            except ValueError:
+                                print("La opcion no esta habilitada")
+                                os.system('pause')
                     case 4: ctrainers()
                     case 5: gmatriculas()
                     case 6: break
