@@ -1,5 +1,5 @@
 import os
-from .variables import save,aprob,crutas,ctrainer,camper
+from .variables import savecampers,aprob,crutas,ctrainer,bcampers,camper,bidcampers, ecampers
 
 menuu = ("""
 +++++++++++++++++++++++++++++++
@@ -7,11 +7,34 @@ menuu = ("""
 +++++++++++++++++++++++++++++++
 """)
 #Creacion campers
-def create():
+def createcamper():
     #Impresion Menu
-    print(menuu)
+    print("""
+++++++++++++++++++
++  Crear Camper  +
+++++++++++++++++++
+""")
     #Se llama al metodo encargado de guardar los campers
-    save()
+    savecampers()
+    
+def buscarcamper(codigo=None):
+    print("""
+++++++++++++++
++  Camper/s  +
+++++++++++++++
+""")
+    if(codigo==None):
+        bcampers()
+    else :
+        bidcampers(codigo)
+
+def eliminarCamper(id):
+    print("""
++++++++++++++++++++++
++  Eliminar Camper  +
++++++++++++++++++++++
+""")
+    ecampers(id)
     
 def updpruebas():
     #Impresion Menu
@@ -39,14 +62,14 @@ def gmatriculas():
 def menu():
 
     #Guarda las opciones del menu en un array
-    menu = ["CRUD CAMPERS", "Registro pruebas", "Crear Rutas", "Crear Trainer", "Gestionar Matriculas"]
+    menu = ["CRUD Campers", "Registro pruebas", "Crear Rutas", "Crear Trainer", "Gestionar Matriculas", "Salir"]
     while(True):
         os.system('cls')
         print("""
 +++++++++++++++++++++++++++++++
 +  Menu Registro CampusLands  +
 +++++++++++++++++++++++++++++++
-""")
+            """)
         for i,value in enumerate(menu):
             print(f"{i+1}. {value}")
         try:
@@ -54,23 +77,57 @@ def menu():
             #Condicion para entrar al menu
             if(opc<=len(menu) and opc>0):
                 match(opc):
+                    #Accede al menu de crud campers, crear, buscar, actualizar y eliminar
                     case 1: 
+                        menucamper = ["Crear campers", "Buscar campers", "Eliminar campers", "Editar campers","Salir"]
                         while(True):
-                            os.sytem('cls')
+                            os.system('cls')
                             print("""
-                                ++++++++++++++++++
-                                +  Menu Campers  +
-                                ++++++++++++++++++
+++++++++++++++++++
++  Menu Campers  +
+++++++++++++++++++
                                 """)
-                            menu = ["Crear campers", "Buscar campers", "Eliminar campers", "Editar campers"]
-                            for i,value in enumerate(menu):
+                            for i,value in enumerate(menucamper):
                                 print(f"{i+1}. {value}")
                             try: 
                                 opc= int(input(":"))
-                                if(opc<=len(menu) and opc>0):
+                                if(opc<=len(menucamper) and opc>0):
                                     match(opc):
+                                        #Accede a crear campers y llama el metodo
                                         case 1:
-                                            save()
+                                             createcamper()
+                                        #Accede a buscar campers y muestra el menu
+                                        case 2:
+                                            menubuscarcamper = ["Listar todos los campers", "Listar por id", "Salir"]
+                                            while(True):
+                                                os.system('cls')
+                                                print("""
++++++++++++++++++++
++  Buscar Camper  +
++++++++++++++++++++
+""")
+                                                for i, value in enumerate(menubuscarcamper):
+                                                    print(f"{i+1}. {value}")
+                                                try:
+                                                    opc=int(input(":"))
+                                                    if(opc<=len(menubuscarcamper) and opc>0):
+                                                        match(opc):
+                                                            #Accede a listar todos los campers
+                                                            case 1:
+                                                                buscarcamper()
+                                                            case 2:
+                                                                idc = int(input("Ingrese el id del camper a buscar: "))
+                                                                buscarcamper(idc)
+                                                            case 3:
+                                                                break
+                                                except ValueError:
+                                                    print("La opcion no esta habilitada")
+                                                    os.system('pause')
+                                        case 3:
+                                            idc = int(input("Ingrese el id del camper a eliminar: "))
+                                            eliminarCamper(idc)
+                                        case 5: 
+                                            break
                             except ValueError:
                                 print("La opcion no esta habilitada")
                                 os.system('pause')   
@@ -78,6 +135,7 @@ def menu():
                     case 3: rutas()
                     case 4: ctrainers()
                     case 5: gmatriculas()
+                    case 6: break
         except ValueError:
             print("La opcion no esta habilitada")
             os.system('pause')

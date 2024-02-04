@@ -3,17 +3,18 @@ rutas = list()
 camper = list()
 trainers = list()
 #Guarda los campers
-def save():
+def savecampers():
     inf = { 
         "Id" : int(input("Ingrese el id del camper: ")),
         "Nombre": input("Ingrese el nombre del camper: "),
         "Apellido" : input("Ingrese el apellido del camper: "),
+        "Edad" : int(input("Ingrese la edad del camper: ")),
         "Direccion" : input("Ingrese la direccion del camper: "),
-        "Acudiente" : input("Ingrese el nombre del acudiente del camper: "),
+        "Acudiente" : {},
         "Telefono" : [
             {
-                f"{'Fijo' if(int(input('1. Fijo 0. Celular: '))) else 'Celular'}":
-                input(f'Numero de contacto{x+1}: ')
+                f"{'Fijo' if(int(input('0. Celular 1. Fijo : '))) else 'Celular'}":
+                int(input(f'Numero de contacto {x+1}: '))
             }
             for x in range((int(input("¿Cuantos numeros de contacto tiene?: "))))
         ],
@@ -21,10 +22,45 @@ def save():
         "Ruta" : "",
         "Area" : "",
     }
+    if inf["Edad"] < 18:
+        infaux = {
+                "Nombre" : input("Ingrese el nombre del acudiente del menor: "),
+                "Id" : input("Ingrese el id del acudiente del menor: ")
+            }
+        inf["Acudiente"] = infaux
+    else :
+        del inf["Acudiente"]
+    for i, value in enumerate(camper):
+        if value["Id"] == inf["Id"]:
+            print("Ya hay un registro creado con el mismo ID, por favor intente con otro")
+            os.system('pause')
+            return
     camper.append(inf)
     print(camper)
     os.system('pause')
-    
+
+def bcampers():
+    for i,value in enumerate(camper):
+        print(f'Id: {value.get("Id")} \nNombre: {value.get("Nombre")} \nApellido: {value.get("Apellido")} \nEdad: {value.get("Edad")} \nEstado: {value.get("Estado")} \nRuta : {value.get("Ruta")} \n')
+    os.system('pause')
+
+def bidcampers(id):
+    for i, value in enumerate(camper):
+        if value["Id"] == id:
+            print(f'Id: {value.get("Id")} \nNombre: {value.get("Nombre")} \nApellido: {value.get("Apellido")} \nEdad: {value.get("Edad")} \nEstado: {value.get("Estado")} \nRuta : {value.get("Ruta")} \n')
+    os.system('pause')
+
+def ecampers(id):
+    for i, value in enumerate(camper):
+        if value["Id"] == id:
+            print(f'Id: {value.get("Id")} \nNombre: {value.get("Nombre")} \nApellido: {value.get("Apellido")} \nEdad: {value.get("Edad")} \nEstado: {value.get("Estado")} \nRuta : {value.get("Ruta")} \n')
+            auxe = input("¿Esta seguro que desea eliminar el camper?(Si/No): ")
+            if auxe == "Si":
+                camper.pop(i)
+                print(camper)
+    os.system('pause')
+
+
 def aprob(id):
     for i,value in enumerate(camper):
         if value["Id"] == id:  
@@ -81,3 +117,6 @@ def maprobados():
         for i, value in iexterno.items():
             print(value)
             print(i)
+            
+def exitaux():
+    pass
