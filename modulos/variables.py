@@ -253,7 +253,7 @@ def crutas():
         "PFORMAL" : ["Java", "JavaScript", "C#"],
         "BD" : {
             "Principal" : input("Ingrese la Base de Datos Principal: "),
-            "Secundaria" : input("Ingrese la base de datos secundaria: ")
+            "Secundaria" : input("Ingrese la Base de Datos Secundaria: ")
             },
         "BEND" : [],
     }
@@ -276,27 +276,100 @@ def crutas():
     rutas.append(inf)
     print(rutas)
     os.system('pause')
-
 #Mostrar todas las rutas
 def btrutas():
-    for i,value in enumerate(trainer):
+    for i,value in enumerate(rutas):
+        print("----------------")
         print(f'Nombre: {value.get("Nombre")}')
+        print("----------------")
         for i1, val in value.items():
             if i1 == "FPOO":
                 print("Fundamentos de Programacion:")
                 for i2 in (val):
                     print(i2)
+                print("----------------")
             if i1 == "PWEB":
                 print("Progamacion web:")
                 for i2 in (val):
                     print(i2)
-            if i1 == "PWEB":
-                print("Progamacion web:")
+                print("----------------")
+            if i1 == "PFORMAL":
+                print("Progamacion formal:")
                 for i2 in (val):
                     print(i2)
+                print("----------------")
+        print(f'Base de datos principal: {value["BD"].get("Principal")} \nBase de datos secundario: {value["BD"].get("Secundaria")}\n----------------')
+        for header, contenido in value.items():
+            if header == "BEND":
+                print("Backend")
+                for index in contenido:
+                    print(index)
         print('\n')
     os.system('pause')
+#Mostrar una sola ruta
+def idruta(nombre):
+    for i,value in enumerate(rutas):
+        if value["Nombre"] == nombre:
+            print("----------------")
+            print(f'Nombre: {value.get("Nombre")}')
+            print("----------------")
+            for i1, val in value.items():
+                if i1 == "FPOO":
+                    print("Fundamentos de Programacion:")
+                    for i2 in (val):
+                        print(i2)
+                    print("----------------")
+                if i1 == "PWEB":
+                    print("Progamacion web:")
+                    for i2 in (val):
+                        print(i2)
+                    print("----------------")
+                if i1 == "PFORMAL":
+                    print("Progamacion formal:")
+                    for i2 in (val):
+                        print(i2)
+                    print("----------------")
+            print(f'Base de datos principal: {value["BD"].get("Principal")} \nBase de datos secundario: {value["BD"].get("Secundaria")}\n----------------')
+            for header, contenido in value.items():
+                if header == "BEND":
+                    print("Backend")
+                    for index in contenido:
+                        print(index)
+            print('\n')
+    os.system('pause')
+#Eliminar ruta
+def eruta(nombre):
+    for i, value in enumerate(rutas):
+        if value["Nombre"] == nombre:
+            print("----------------")
+            print(f'Nombre: {value.get("Nombre")}')
+            print("----------------")
+            for i1, val in value.items():
+                if i1 == "FPOO":
+                    print("Fundamentos de Programacion:")
+                    for i2 in (val):
+                        print(i2)
+                    print("----------------")
+                if i1 == "PWEB":
+                    print("Progamacion web:")
+                    for i2 in (val):
+                        print(i2)
+                    print("----------------")
+                if i1 == "PFORMAL":
+                    print("Progamacion formal:")
+                    for i2 in (val):
+                        print(i2)
+                    print("----------------")
+            print(f'Base de datos principal: {value["BD"].get("Principal")} \nBase de datos secundario: {value["BD"].get("Secundaria")}\n----------------')
+            for header, contenido in value.items():
+                if header == "BEND":
+                    print("Backend")
+                    for index in contenido:
+                        print(index)
+            print('\n')
+            
 
+    
 #--------------------------------------------------------------------------------------------------------------------------------
 def aprob(id):
     for i,value in enumerate(camper):

@@ -1,5 +1,5 @@
 import os
-from .variables import savecampers,aprob,crutas,ctrainer,bcampers,camper,bidcampers, ecampers, ucampers, savetrainers, savetrainers, savetrainers,btrainers, bidtrainers, etrainers, atrainers, crutas
+from .variables import savecampers,aprob,crutas,ctrainer,bcampers,camper,bidcampers, ecampers, ucampers, savetrainers, savetrainers, savetrainers,btrainers, bidtrainers, etrainers, atrainers, crutas, btrutas,idruta
 
 menuu = ("""
 +++++++++++++++++++++++++++++++
@@ -104,9 +104,12 @@ def buscarrutas(codigo=None):
 ++++++++++++
 """)
     if(codigo==None):
-        pass
+        btrutas()
     else :
-        bidtrainers(codigo)
+        idruta(codigo)
+#Accede al metodo para eliminar rutas
+def eliminarRuta(Nombre):
+    pass
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -322,20 +325,20 @@ def menu():
                                                                             match(opc):
                                                                                 #Accede a listar todas las rutas
                                                                                 case 1:
-                                                                                    pass
+                                                                                    buscarrutas()
                                                                                 #Accede a buscar camper por id
                                                                                 case 2:
-                                                                                    idt = int(input("Ingrese el id del trainer a buscar: "))
-                                                                                    buscartrainer(idt)
+                                                                                    idt = input("Ingrese el nombre de la ruta a buscar: ")
+                                                                                    buscarrutas(idt)
                                                                                 case 3:
                                                                                     break
                                                                     except ValueError:
                                                                         print("La opcion no esta habilitada")
                                                                         os.system('pause')
-                                                            #Accede a eliminar trainers
+                                                            #Accede a eliminar rutas
                                                             case 3:
-                                                                idc = int(input("Ingrese el id del trainer a eliminar: "))
-                                                                eliminarTrainer(idc)
+                                                                idc = input("Ingrese el nombre de la ruta a eliminar: ")
+                                                                pass
                                                             #Accede a actualizar campers
                                                             case 4:
                                                                 idc = int(input("Ingrese el id del trainer a editar: "))
